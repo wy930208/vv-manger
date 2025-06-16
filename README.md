@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CRM 客户管理系统
 
 基于 React + NestJS 的现代化客户管理系统。
@@ -56,3 +57,6 @@ pnpm start:dev
 - JWT
 - Redis
 - Swagger 
+=======
+# vv-manger
+>>>>>>> bb6bf3edbec664d3d40e2b28522aaeee53efd9d0
