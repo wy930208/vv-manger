@@ -4,6 +4,9 @@ FROM node:20-alpine
 # 设置工作目录
 WORKDIR /app
 
+# 设置npm淘宝源
+RUN npm config set registry https://registry.npmmirror.com
+
 # 安装 pnpm 和 nest CLI
 RUN npm install -g pnpm @nestjs/cli
 

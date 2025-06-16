@@ -4,6 +4,9 @@ FROM node:20-alpine AS builder
 # 设置工作目录
 WORKDIR /app
 
+# 设置npm淘宝源
+RUN npm config set registry https://registry.npmmirror.com
+
 # 安装 pnpm
 RUN npm install -g pnpm
 
@@ -23,6 +26,9 @@ RUN pnpm --filter web run build
 
 # 生产阶段
 FROM nginx:alpine
+
+# 打印当前目录
+RUN echo "当前目录: $(pwd)"
 
 # 复制构建产物到 nginx 目录
 COPY --from=builder /app/packages/web/dist /usr/share/nginx/html
