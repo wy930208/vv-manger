@@ -58,6 +58,17 @@ export const layout = () => {
         initialState,
       });
     },
+    footerRender: () => {
+      return React.createElement('div', {
+        style: {
+          textAlign: 'center',
+          padding: '16px 0',
+          color: '#666',
+          fontSize: '12px',
+          borderTop: '1px solid #f0f0f0'
+        }
+      }, '粤ICP备2024286737号-1');
+    },
   };
 };
 
