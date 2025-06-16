@@ -1,4 +1,5 @@
 {
+  "name": "web",
   "private": true,
   "author": "huangzhiwei4 <huangzhiwei4@yy.com>",
   "scripts": {
