@@ -15,10 +15,14 @@ COPY package.json pnpm-lock.yaml ./
 COPY packages/server/package.json ./packages/server/
 COPY packages/web/package.json ./packages/web/
 
-
-
 # 复制前端源代码
 COPY packages/web/ ./packages/web/
+
+# 设置 NODE_PATH 环境变量指向根目录的 node_modules
+ENV NODE_PATH=/app/node_modules
+
+# 构建应用
+WORKDIR /app/packages/web
 
 # 安装所有依赖
 RUN pnpm install
