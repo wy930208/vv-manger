@@ -43,7 +43,7 @@ COPY --from=builder /app/packages/web/dist /usr/share/nginx/html
 COPY packages/web/nginx.conf /etc/nginx/conf.d/default.conf
 
 # 暴露端口
-EXPOSE 80
+EXPOSE 8081
 
 # 启动 nginx
 CMD ["nginx", "-g", "daemon off;"]
