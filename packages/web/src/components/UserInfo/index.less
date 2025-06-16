@@ -1,0 +1,41 @@
+.userInfo {
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+
+  .userSpace {
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
+      padding: 4px 8px;
+    }
+  }
+
+  .username {
+    color: #333;
+    font-weight: 500;
+    margin-left: 8px;
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .userInfo {
+    top: 12px;
+    right: 16px;
+    padding: 6px 10px;
+
+    .username {
+      display: none; // 在小屏幕上隐藏用户名，只显示头像
+    }
+  }
+}

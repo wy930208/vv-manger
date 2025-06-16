@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # 数据库服务
+  mysql:
+    image: mysql:8.0
+    container_name: vv-manager-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: vv_manager
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: app_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - vv-manager-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # 后端服务
+  server:
+    build:
+      context: .
+      dockerfile: ./packages/server/Dockerfile
+    container_name: vv-manager-server
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USERNAME=app_user
+      - DB_PASSWORD=app_password
+      - DB_DATABASE=vv_manager
+      - JWT_SECRET=your-jwt-secret-key-change-this-in-production
+    ports:
+      - "3000:3000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - vv-manager-network
+
+  # 前端服务
+  web:
+    build:
+      context: .
+      dockerfile: ./packages/web/Dockerfile
+    container_name: vv-manager-web
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    networks:
+      - vv-manager-network
+
+volumes:
+  mysql_data:
+    name: vv-manager-mysql-data
+
+networks:
+  vv-manager-network:
+    name: vv-manager-network
+    driver: bridge
