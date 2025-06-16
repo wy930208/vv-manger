@@ -99,35 +99,9 @@ export default defineConfig({
           name: '门店信息',
           component: './store/info',
         },
-        {
-          path: '/store/staff',
-          name: '门店人员',
-          component: './store/staff',
-        },
       ],
     },
-    {
-      path: '/admin',
-      name: '管理页',
-      icon: 'crown',
-      // access: 'canAdmin',
-      routes: [
-        {
-          path: '/admin',
-          redirect: '/admin/sub-page',
-        },
-        {
-          path: '/admin/sub-page',
-          name: '子页面',
-          component: './Admin',
-        },
-        {
-          path: '/admin/table',
-          name: 'Table',
-          component: './Table',
-        },
-      ],
-    },
+   
   ],
   npmClient: 'pnpm',
 });
