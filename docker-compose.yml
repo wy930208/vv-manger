@@ -11,6 +11,7 @@ services:
       MYSQL_DATABASE: vv_manager
       MYSQL_USER: wy
       MYSQL_PASSWORD: wy930028
+      MYSQL_ROOT_HOST: '%' 
     ports:
       - "3306:3306"
     volumes:
