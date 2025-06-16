@@ -15,14 +15,16 @@ COPY package.json pnpm-lock.yaml ./
 COPY packages/server/package.json ./packages/server/
 COPY packages/web/package.json ./packages/web/
 
-# 安装所有依赖
-RUN pnpm install --frozen-lockfile
+
 
 # 复制前端源代码
 COPY packages/web/ ./packages/web/
 
+# 安装所有依赖
+RUN pnpm install
+
 # 构建应用
-RUN pnpm --filter ./packages/web run build
+RUN pnpm --filter web run build
 
 # 生产阶段
 FROM nginx:alpine
