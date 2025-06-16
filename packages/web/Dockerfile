@@ -22,7 +22,7 @@ RUN pnpm install --frozen-lockfile
 COPY packages/web/ ./packages/web/
 
 # 构建应用
-RUN pnpm --filter web run build
+RUN pnpm --filter ./packages/web run build
 
 # 生产阶段
 FROM nginx:alpine
