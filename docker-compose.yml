@@ -11,10 +11,10 @@ services:
       MYSQL_DATABASE: vv_manager
       MYSQL_USER: wy
       MYSQL_PASSWORD: wy930028
-      MYSQL_ROOT_HOST: '%'
       # 添加字符集环境变量
       MYSQL_CHARSET: utf8mb4
       MYSQL_COLLATION: utf8mb4_unicode_ci
+      TZ: Asia/Shanghai
     ports:
       - "3306:3306"
     volumes:
