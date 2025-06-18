@@ -12,13 +12,22 @@ services:
       MYSQL_USER: wy
       MYSQL_PASSWORD: wy930028
       MYSQL_ROOT_HOST: '%'
+      # 添加字符集环境变量
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_unicode_ci
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       # 添加SQL初始化脚本挂载
       - ./packages/server/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --default-character-set=utf8mb4
+      --init-connect='SET NAMES utf8mb4;'
+      --innodb-flush-log-at-trx-commit=0
+      --sync-binlog=0
     networks:
       - vv-manager-network
     healthcheck:
