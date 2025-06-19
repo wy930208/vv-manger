@@ -7,7 +7,7 @@ services:
     container_name: vv-manager-mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: wy930028
       MYSQL_DATABASE: vv_manager
       MYSQL_USER: wy
       MYSQL_PASSWORD: wy930028
@@ -39,7 +39,7 @@ services:
       - NODE_ENV=production
       - DB_HOST=mysql
       - DB_PORT=3306
-      - DB_USERNAME=wy
+      - DB_USERNAME=root
       - DB_PASSWORD=wy930028
       - DB_DATABASE=vv_manager
       - JWT_SECRET=your-jwt-secret-key-change-this-in-production
